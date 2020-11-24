@@ -11,11 +11,11 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-      flash[:success] = 'メッセージを投稿しました。'
+      flash[:success] = '記事を投稿しました。'
       redirect_to root_url
     else
-      @posts = current_user.posts.order(id: :desc).page(params[:page])
-      flash.now[:danger] = 'メッセージの投稿に失敗しました。'
+      @posts = current_user.feed_posts.order(id: :desc).page(params[:page])
+      flash.now[:danger] = '記事の投稿に失敗しました。'
       render 'users/index'
     end
   end
