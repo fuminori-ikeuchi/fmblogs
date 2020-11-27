@@ -1,16 +1,30 @@
 <div class="row">
-  <aside class="col-sm-4">
+  <div class="col-md-3">
     <div class="card">
       <div class="card-header">
         <h3 class="card-title"><%= @user.name %></h3>
+          <% if current_user == @user %>
+            <%= link_to 'プロフィールを編集する', edit_user_path(@user) %>
+          <% end %>
       </div>
       <div class="card-body">
-        <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
+        <% if @user.img.present? %>
+          <%= image_tag @user.img.url, class: "pic", style: "width: 200px;, hight: 200px;" %>
+        <% else %>   
+          <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 250 }) %>" alt="">
+        <% end %>
       </div>
     </div>
     <%= render 'relationships/follow_button', user: @user %>
-  </aside>
-  <div class="col-sm-8">
+  </div>
+  <div class="offset-md-2 col-md-3 mt-5">
+    <% if current_user == @user %>
+    <%= link_to '記事を投稿する', new_post_path(@post) %>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="offset-md-5 col-md-7 mt-5">
     <ul class="nav nav-tabs nav-justified mb-3">
       <li class="nav-item"><a href="<%= user_path(@user) %>" class="nav-link <%= 'active' if current_page?(user_path(@user)) %>">記事一覧  <span class="badge badge-secondary"><%= @count_posts %></span></a></li>
       <li class="nav-item"><a href="<%= followings_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(followings_user_path(@user)) %>">フォロー一覧  <span class="badge badge-secondary"><%= @count_followings %></span></a></li>

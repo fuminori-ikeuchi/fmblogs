@@ -1,18 +1,20 @@
 <ul class="list-unstyled">
   <% posts.each do |post| %>
     <li class="media mb-3">
-      <img class="mr-2 rounded" src="<%= gravatar_url(post.user, { size: 50 }) %>" alt="">
-      <div class="media-body">
+      <% if post.image.present? %> 
+        <%= image_tag post.image.url, class: "pic", style: "width: 40px;, hight: 40px;" %>
+      <% else %>   
+        <img class="mr-2 rounded" src="<%= gravatar_url(post.user, { size: 40 }) %>" alt="">
+      <% end %>
+      <div class="media-body ml-3">
         <div>
           <%= link_to post.user.name, user_path(post.user) %> <span class="text-muted">posted at <%= post.created_at %></span>
         </div>
-        <div>
-          <p class="mb-0"><%= post.content %></p>
+        <div class="mt-2">
+          <p class="mb-0"><%= post.title %></p>
         </div>
-        <div>
-          <% if current_user == post.user %>
-            <%= link_to "Delete", post, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
-          <% end %>
+        <div class="text-center">
+          <button type="button" class="btn btn-outline-primary"><%= link_to '記事を見る', post_path(post) %></button> 
         </div>
       </div>
     </li>

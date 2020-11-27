@@ -1,2 +1,33 @@
-<h1>Posts#new</h1>
-<p>Find me in app/views/posts/new.html.erb</p>
+  <div class="row">
+    <div class="col-sm-8">
+        <h2 class="mb-5">ブログを書く</h2>
+      <%= form_with(model: @post, local: true) do |f| %>
+      <% if @post.errors.any? %>
+        <div id="error_explanation" class="alert alert-warning">
+        <ul class="mb-0">
+          <% @post.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+        </div>
+      <% end %>
+        <div class="form-group mb-2"> 
+          <%= f.label :image, '画像添付' %>
+          <%= f.file_field :image, class: 'form-control'  %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.label :title, 'タイトル' %>
+          <%= f.text_area :title, class: 'form-control', rows: 2 %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.label :content, '内容' %>
+          <%= f.text_area :content, class: 'form-control', rows: 5 %>
+        </div>
+        <div class="mt-5">
+          <%= f.submit '投稿する', class: 'btn btn-primary btn-block' %>
+        </div>
+      <% end %>
+    </div>
+  </div>

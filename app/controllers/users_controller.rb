@@ -1,17 +1,19 @@
 class UsersController < ApplicationController
   before_action :require_user_logged_in, only: [:index, :show, :edit, :update]
+  before_action :correct_user, only: [:edit, :update]
   
   def index
-    @users = User.order(id: :desc).page(params[:page]).per(25)
+    @user = current_user
+    @users = User.order(id: :desc).page(params[:page]).per(10)
     if logged_in?
-      @post = current_user.posts.build
-      @posts = current_user.feed_posts.order(id: :desc).page(params[:page])
+      @posts = current_user.feed_posts.order(id: :desc).page(params[:page]).per(5)
     end
   end
 
   def show
+    
     @user = User.find(params[:id])
-    @posts = @user.posts.order(id: :desc).page(params[:page])
+    @posts = @user.posts.order(id: :desc).page(params[:page]).per(10)
     counts(@user)
   end
 
@@ -32,11 +34,21 @@ class UsersController < ApplicationController
   end
 
   def edit
+    
   end
 
   
 
   def update
+    
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      flash[:success] = 'プロフィールは更新されました'
+      redirect_to @user
+    else
+      flash.now[:danger] = 'プロフィールは更新されませんでした'
+      render :edit
+    end
   end
   
   
@@ -56,8 +68,17 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :img)
   end
+  
+  
+  def correct_user
+    @user = User.find(params[:id])
+    unless current_user == @user
+      redirect_to root_url
+    end
+  end
+  
   
 end
 

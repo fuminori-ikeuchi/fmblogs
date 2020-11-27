@@ -1,8 +1,52 @@
-<h1>id: <%= @post.id %> の記事詳細ページ</h1>
+  <div class="row">
+    <div class="offset-md-4 col-md-4">
+        <% if @user.img.present? %>
+          <h3 class="text-center mb-5 mt-3"><%= image_tag @user.img.url, class: "pic", style: "width: 40px;, hight: 40px;" %>:<%= link_to @user.name, user_path(@user) %>さんの記事</h3>
+        <% else %>   
+          <h3 class="text-center mb-5 mt-3"><img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 30 }) %>" alt="">:<%= link_to @user.name, user_path(@user) %>さんの記事</h3>
+        <% end %>
+      
+      <p>タイトル:</p>
+      <%= @post.title %>
+      <p class="mt-5">内容:</p>
+      <p><%= safe_join(@post.content.split("\n"),tag(:br)) %></p>
+        <div class="thumbnail">
+          <% if @post.image.present? %>
+            <%= image_tag @post.image.url, class: "pic", style: "width: 100px;, hight: 100px;" %>
+          <% end %>
+        </div>
+        <div class="text-center mt-5">
+          <% if current_user && @posts %>
+            <button class="btn btn-outline-success" type="submit"><%= link_to '編集する', edit_post_path(@post) %></button>
+            <button class="btn btn-outline-danger" type="submit"><%= link_to '削除する', @post, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></button>
+          <% else %>
+            <%= link_to '戻る', root_url %>
+          <% end %>
+        </div>
+    </div>    
+  </div>      
+        
+  <div class="row">  
+    <div class="col-md-2 mt-5">
+      <p class="mb-0">コメント入力</p>
+        <%= form_with(model: [@post, @comment], local: true) do |form| %>
+          <%= form.text_area :text, placeholder: "ここに入力してね", rows: "2" %>
+          <%= form.submit "送信" %>
+        <% end %>
+    </div>
+        <div class="offset-md-2 col-md-2 mt-5">
+          <h5>コメント一覧</h5>
+            <% if @comments %>
+              <% @comments.each do |comment| %>
+              <p>
+                <strong><%= link_to comment.user.name, "/users/#{comment.user_id}" %>：</strong>
+                <%= comment.text %>
+              </p>
+              <% end %>
+            <% end %>
+        </div>
+  </div>
+    
 
 
-<p><%= @post.content %></p>
 
-<%= link_to '一覧に戻る', posts_path %>
-<%= link_to 'このタスクを編集する', edit_post_path(@post) %>
-<%= link_to 'このタスクを削除する', @post, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
