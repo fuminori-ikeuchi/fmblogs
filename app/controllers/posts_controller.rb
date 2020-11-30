@@ -6,7 +6,6 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comment = Comment.new
     @comments = @post.comments.includes(:user)
-    #@user = post.user.find_by(params[:id])
     @posts = current_user.posts.find_by(id: params[:id])
     @user = @post.user
   
@@ -30,6 +29,7 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    
   end
 
   def update
@@ -47,6 +47,12 @@ class PostsController < ApplicationController
     flash[:success] = 'メッセージを削除しました。'
     redirect_to root_url
     
+  end
+  
+  def likers
+    @post = Post.find(params[:id])
+    @likers = @post.likers.page(params[:page])
+
   end
   
   

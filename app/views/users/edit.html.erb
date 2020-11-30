@@ -1,7 +1,7 @@
 
 <div class="row">
   <div class="col-sm-6 offset-sm-3">
-　　<h2 class="mb-4">id: <%= @user.id %> ユーザー編集画面</h2>
+　　<h3 class="mb-4">id: <%= @user.id %> ユーザー編集画面</h3>
     <%= form_with(model: @user, local: true) do |f| %>
       <%= render 'layouts/error_messages', model: f.object %>
       <div class="form-group">
@@ -24,14 +24,19 @@
         <%= f.password_field :password_confirmation, class: 'form-control' %>
       </div>
       
-      <div class="form-group mb-4"> 
+      <div class="form-group">
+        <%= f.label :introduce, '自己紹介文' %>
+        <%= f.text_area :introduce, class: 'form-control', rows: 5 %>
+      </div>
+      
+      <div class="form-group mb-3"> 
         <%= f.label :img, 'プロフィール画像' %>
         <%= f.file_field :img, class: 'form-control'  %>
       </div>
 
       <%= f.submit '編集完了！', class: 'btn btn-primary btn-block' %>
     <% end %>
-    <div class="mt-2 text-right">
+    <div class="mt-2">
     <%= link_to '戻る', @user %>
     </div>
   </div>

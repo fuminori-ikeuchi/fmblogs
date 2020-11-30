@@ -3,6 +3,9 @@ class Post < ApplicationRecord
   
   has_many :comments, dependent: :destroy
   
+  has_many :favorites
+  has_many :likers, through: :favorites, source: :user
+  
   
   mount_uploader :image, ImageUploader
   

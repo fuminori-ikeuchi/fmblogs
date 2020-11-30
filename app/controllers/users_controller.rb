@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   def show
     
     @user = User.find(params[:id])
-    @posts = @user.posts.order(id: :desc).page(params[:page]).per(10)
+    @posts = @user.posts.order(id: :desc).page(params[:page]).per(5)
     counts(@user)
   end
 
@@ -64,11 +64,17 @@ class UsersController < ApplicationController
     counts(@user)
   end
   
+  def likes
+    @user = User.find(params[:id])
+    @likes = @user.likes.page(params[:page])
+    counts(@user)
+  end
+  
   
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :img)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :img, :introduce)
   end
   
   

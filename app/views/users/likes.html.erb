@@ -3,7 +3,7 @@
     <div class="card">
       <div class="card-header">
         <h3 class="card-title"><%= @user.name %></h3>
-      </div>
+          </div>
       <div class="card-body">
         <% if @user.img.present? %>
           <%= image_tag @user.img.url, class: "pic", style: "width: 200px;, hight: 200px;" %>
@@ -36,9 +36,9 @@
     <ul class="nav nav-tabs nav-justified mb-3">
       <li class="nav-item"><a href="<%= user_path(@user) %>" class="nav-link <%= 'active' if current_page?(user_path(@user)) %>">記事一覧  <span class="badge badge-secondary"><%= @count_posts %></span></a></li>
       <li class="nav-item"><a href="<%= followings_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(followings_user_path(@user)) %>">フォロー一覧  <span class="badge badge-secondary"><%= @count_followings %></span></a></li>
-      <li class="nav-item"><a href="<%= followers_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(followers_user_path(@user)) %>">フォロワー一覧  <span class="badge badge-success"><%= @count_followers %></span></a></li>
-      <li class="nav-item"><a href="<%= likes_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(likes_user_path(@user)) %>">お気に入り一覧  <span class="badge badge-secondary"><%= @count_likes %></span></a></li>
+      <li class="nav-item"><a href="<%= followers_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(followers_user_path(@user)) %>">フォロワー一覧  <span class="badge badge-secondary"><%= @count_followers %></span></a></li>
+      <li class="nav-item"><a href="<%= likes_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(likes_user_path(@user)) %>">お気に入り一覧  <span class="badge badge-success"><%= @count_likes %></span></a></li>
     </ul>
-    <%= render 'users', users: @followers %>
+    <%= render 'posts/posts', posts: @likes %>
   </div>
 </div>
