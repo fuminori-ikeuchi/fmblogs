@@ -3,11 +3,7 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   
   def index
-    @user = current_user
     @users = User.order(id: :desc).page(params[:page]).per(10)
-    if logged_in?
-      @posts = current_user.feed_posts.order(id: :desc).page(params[:page]).per(5)
-    end
   end
 
   def show

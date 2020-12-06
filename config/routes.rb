@@ -1,11 +1,6 @@
 Rails.application.routes.draw do
   
-  
-  get 'favorites/create'
-  get 'favorites/destroy'
-  get 'relationships/create'
-  get 'relationships/destroy'
-  root to: 'users#index'
+  root to: 'toppages#index'
   
   get 'signup', to: 'users#new'
   
@@ -13,7 +8,7 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
   
-  resources :users, only: [:show, :create, :edit, :update] do
+  resources :users, only: [:index, :show, :create, :edit, :update] do
     member do
       get :followings
       get :followers
