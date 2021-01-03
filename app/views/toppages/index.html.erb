@@ -6,11 +6,11 @@
 　      <h2 class="card-title"><%= @user.name %></h2>
           <%= link_to 'マイページ', @user %>
       </div>
-      <div class="card-body">
+      <div class="card-body text-center">
         <% if @user.img.present? %>
           <%= image_tag @user.img.url, class: "pic", style: "width: 150px;, hight: 150px;" %>
         <% else %> 
-          <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 200 }) %>" alt="">
+          <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 150 }) %>" alt="">
         <% end %>
       </div>
     </div>
@@ -20,15 +20,15 @@
       <%= form.submit "検索", class: "search-btn" %>
     <% end %>
 　</div>  
-    <div class="col-lg-6 ml-5">
-      <h3 class="ml-5">投稿一覧</h3>
-      <P><%= render 'posts/posts', posts: @posts %></P>
-    </div>
+  <div class="col-lg-6 ml-5">
+    <h3 class="ml-5">投稿一覧</h3>
+    <P><%= render 'posts/posts', posts: @posts %></P>
+  </div>
 
-    <div class="col-lg-2 ml-3">
-      <p class="mb-3 mt-5"><%= link_to '👥:ユーザーを探す', users_path %></p>
-      <%= render 'users/users', users: @users %>
-    </div>
+  <div class="col-lg-2 ml-3">
+    <p class="mb-3 mt-5"><%= link_to '👥:ユーザーを探す', users_path %></p>
+    <%= render 'users/users', users: @users %>
+  </div>
 </div>
   
   

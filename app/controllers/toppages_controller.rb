@@ -6,7 +6,7 @@ class ToppagesController < ApplicationController
     if logged_in?
       @posts = current_user.feed_posts.order(id: :desc).page(params[:page]).per(5)
     end
-    @users = User.order(id: :desc).page(params[:page]).per(10)
+    @users = User.order(id: :desc).page(params[:page]).per(5)
   end
   
 end

@@ -8,7 +8,7 @@
         <img class="mt-2 rounded" src="<%= gravatar_url(post.user, { size: 40 }) %>" alt="">
       <% end %>
       <div class="media-body ml-3 mt-2">
-          <%= link_to post.user.name, user_path(post.user) %> <span class="text-muted">posted at <%= post.created_at %></span>
+        <%= link_to post.user.name, user_path(post.user) %> <span class="text-muted">posted at <%= post.created_at %></span>
         <div class="mt-2">
           <p class="mb-0"><%= post.title %></p>
         </div>
