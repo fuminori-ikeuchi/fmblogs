@@ -1,18 +1,18 @@
 <div class="row">
-  <div class="offset-md-4 col-sm-3 mt-4">
-　　
-    <%= form_with(url: posts_searches_path, local: true, method: :get, class: "search-form") do |form| %>
-      <%= form.text_field :keyword, placeholder: "タイトル", class: "search-input" %>
-      <%= form.submit "検索", class: "search-btn" %>
-    <% end %>
-    <p class="mt-5">検索結果:</p>
-    <table class="table table-striped mt-1">
-      <tr class="mt-4"><% @posts.each do |post| %>
-        <td><%= link_to post.title, post %></td>
-      </tr><% end %>
-    </table>
-    <div class="text-center">
-      <%= link_to '戻る', "/" %>
+  <div class="offset-sm-3 col-sm-3">　　
+　　<div class="mt-5">
+      <%= form_with(url: posts_searches_path, local: true, method: :get, class: "search-form") do |form| %>
+        <%= form.text_field :keyword, class: "search-input" %>
+        <%= form.submit "再検索", class: "search-btn" %>
+      <% end %>
     </div>
-  </div>
+　　<p class="mb-0">検索結果:</p>
+　　<table class="table table-striped">
+　　  <% @posts.each do |post| %>
+　　  <tr>
+　　    <td><%= link_to post.title, post_path(post) %></td>
+　　  </tr>
+　　  <% end %>
+　　</table>
+　</div>
 </div>

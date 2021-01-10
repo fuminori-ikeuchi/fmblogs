@@ -6,3 +6,4 @@ class Posts::SearchesController < ApplicationController
     @posts = Post.search(params[:keyword]).order(created_at: :desc)
   end
 end
+

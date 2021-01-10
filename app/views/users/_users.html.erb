@@ -3,7 +3,7 @@
     <% users.each do |user| %>
       <li class="media">
         <% if user.img.present? %> 
-        <%= image_tag user.img.url, class: "pic", style: "width: 40px;, hight: 40px;" %>
+        <%= image_tag user.img.url, class: "pi", alt: "" %>
       <% else %>   
         <img class="mr-2 rounded" src="<%= gravatar_url(user, { size: 40 }) %>" alt="">
       <% end %>

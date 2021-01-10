@@ -6,7 +6,7 @@
           </div>
       <div class="card-body">
         <% if @user.img.present? %>
-          <%= image_tag @user.img.url, class: "pic", style: "width: 210px;, hight: 210px;" %>
+          <%= image_tag @user.img.url, class: "pic", alt: "" %>
         <% else %>   
           <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 250 }) %>" alt="">
         <% end %>
@@ -25,8 +25,8 @@
     <% end %>
     <div class="mt-5">
       <% if current_user == @user %>
-        <button class="btn btn-outline-success" type="submit"><%= link_to '✍:記事の作成️️', new_post_path(@post) %></button>
-        <button class="btn btn-outline-secondary" type="submit"><%= link_to '👤:ユーザー設定', edit_user_path(@user) %></button>
+        <%= link_to "✍:記事の作成",new_post_path(@post), class: "btn btn-outline-success" %>
+        <%= link_to '👤:ユーザー設定', edit_user_path(@user), class: "btn btn-outline-secondary" %>
       <% end %>
     </div>
   </div>
