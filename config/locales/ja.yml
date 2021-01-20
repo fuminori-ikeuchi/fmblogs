@@ -4,7 +4,6 @@ ja:
       post:
         title: タイトル
         content: 本文
-    attributes:
       user:
         name: 名前
         email: メール

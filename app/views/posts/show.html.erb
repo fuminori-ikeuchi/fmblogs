@@ -1,9 +1,9 @@
   <div class="row">
     <div class="offset-md-3 col-md-6">
       <% if @user.img.present? %>
-        <h3 class="mb-5 mt-3 ml-5"><%= image_tag @user.img.url, class: "picture", alt: "" %>:<%= link_to @user.name, user_path(@user) %>さんの記事</h3>
+        <h3 class="mb-5 mt-3 ml-5"><%= image_tag @user.img.url, class: "picture", alt: "" %>:<%= link_to @user.name, user_path(@user), class: "link" %>さんの記事</h3>
       <% else %>   
-        <h3 class="mb-5 mt-3 ml-5"><img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 30 }) %>" alt="">:<%= link_to @user.name, user_path(@user) %>さんの記事</h3>
+        <h3 class="mb-5 mt-3 ml-5"><img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 30 }) %>" alt="">:<%= link_to @user.name, user_path(@user), class: "link" %>さんの記事</h3>
       <% end %>
       <p>タイトル:</p>
       <%= @post.title %>
@@ -42,7 +42,7 @@
         </div>
     </div>
     <div class="offset-md-1 col-md-2 mt-5">
-      <%= link_to '👍:この記事のいいね', likers_post_path(@post) %>
+      <%= link_to '👍:この記事のいいね', likers_post_path(@post), class: "link"%>
     </div>
   </div>   
         
@@ -52,7 +52,7 @@
         <% if @comments %>
           <% @comments.each do |comment| %>
           <p>
-            <strong><%= link_to comment.user.name, "/users/#{comment.user_id}" %>：</strong>
+            <strong><%= link_to comment.user.name, "/users/#{comment.user_id}", class: "link"%>：</strong>
             <%= comment.text %>
           </p>
           <% end %>
