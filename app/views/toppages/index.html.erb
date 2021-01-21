@@ -1,6 +1,6 @@
 
 <div class="row">
-　<div class="col-lg-3 mr-4"> 
+　<div class="col-lg-3"> 
 　  <div class="card">
       <div class="card-header">
 　      <h2 class="card-title"><%= @user.name %></h2>
@@ -14,16 +14,46 @@
         <% end %>
       </div>
     </div>
-    <p class="mt-4 mb-1">タイトル検索</p>
-    <%= form_with(url: posts_searches_path, local: true, method: :get, class: "search-form") do |form| %>
-      <%= form.text_field :keyword, placeholder: "タイトル", class: "search-input" %>
-      <%= form.submit "検索", class: "search-btn" %>
-    <% end %>
-    <p class="botan"><%= link_to '👥:ユーザーを探す', users_path ,class: "link"%></p>
+    <div class="card mt-5 waku">
+      <div class="card-header daimei">
+        <div class="card-title dai">
+          <p>☆ 最新のトピックス ☆</p>
+        </div>
+      </div>
+     <div class="card-body">
+      <ul>
+        <li>
+          <p><a href="https://techacademy.jp/?gclid=CjwKCAiA6aSABhApEiwA6Cbm_yTG5Qy7W5NBvXeduDXxFPbVhI6c3M3PrpEg4rkkWc3mnHxwoyUQJRoCE6QQAvD_BwE">私はここでプログラミングを学んだ</a></p>
+        </li>
+        <li>
+          <p><a href="https://www3.nhk.or.jp/news/special/coronavirus/data/">今、コロナはどうなっているの？</a></p>
+        </li>
+        <li>
+          <p><a href="https://www.jalan.net/kankou/260000/g1_20/">京都のお寺、神社 top10</a></p>
+        </li>
+        <li>
+          <p><a href="https://tabelog.com/kyoto/A2601/A260401/26003202/">地元の味、究極のラーメン屋さんはココ！？</a></p>
+        </li>
+        <li>
+          <p><a href="https://www.rsk.co.jp/horoscope/2021ranking/">あなたは知ってた？気になる今年の星座ランキング！</a></p>
+        </li>
+      </ul>
+    </div>
+    </div>
 　</div>  
-  <div class="offset-lg-1 col-lg-6">
+  <div class="offset-lg-1 col-lg-5">
     <h3 class="ml-5">投稿一覧</h3>
     <P><%= render 'posts/posts', posts: @posts %></P>
+  </div>
+  <div class="col-lg-2 ml-5 search">
+    <p class="botan"><%= link_to '👥:ユーザーを探す', users_path ,class: "link"%></p>
+    <div class="kensaku">
+    <p class="mt-4 mb-1 mt-5">記事検索</p>
+      <%= form_with(url: posts_searches_path, local: true, method: :get, class: "search-form") do |form| %>
+        <%= form.text_field :keyword, placeholder: "タイトル", class: "search-input" %>
+        <%= form.submit "検索", class: "search-btn" %>
+      <% end %>
+    </div>
   </div>
 </div>
   

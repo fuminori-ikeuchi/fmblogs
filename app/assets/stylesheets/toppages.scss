@@ -17,3 +17,31 @@
     border: 2px solid black;
     border-radius: 50px;
 }
+
+
+
+.card-body {
+    padding-left: 0;
+}
+
+.card-header .daimei {
+    padding: 0;
+}
+
+.dai {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.dai p {
+    margin: 0;
+}
+
+.card-body ul li p a:hover {
+    color: blue;
+    
+}
+
+.search {
+    margin-top: 100px;
+}

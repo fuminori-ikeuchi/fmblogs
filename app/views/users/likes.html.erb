@@ -3,8 +3,8 @@
     <div class="card mt-1">
       <div class="card-header">
         <h3 class="card-title"><%= @user.name %></h3>
-          </div>
-      <div class="card-body">
+      </div>
+      <div class="card-body text-center">
         <% if @user.img.present? %>
           <%= image_tag @user.img.url, class: "pic", alt: "" %>
         <% else %>   
@@ -16,9 +16,9 @@
   </div>
   <div class="offset-md-2 col-md-5 mt-3">
     <% if @user.introduce.present? %>
-      <p class="mb-2">自己紹介文</p>
+      <p class="mb-2 ml-2">◎ 自己紹介文</p>
       <div class="card">
-        <div class="card-body">
+        <div class="card-body text-center">
           <%= @user.introduce %>
         </div>
       </div>
@@ -31,7 +31,7 @@
     </div>
   </div>
 </div>
-<div class="row">
+<div class="row users-waku">
   <div class="offset-md-4 col-md-8 mt-5">
     <ul class="nav nav-tabs nav-justified mb-3">
       <li class="nav-item"><a href="<%= user_path(@user) %>" class="nav-link <%= 'active' if current_page?(user_path(@user)) %>">記事一覧  <span class="badge badge-secondary"><%= @count_posts %></span></a></li>

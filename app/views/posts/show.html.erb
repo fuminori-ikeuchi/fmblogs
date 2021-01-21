@@ -1,54 +1,60 @@
   <div class="row">
-    <div class="offset-md-3 col-md-6">
+    <div class="offset-md-3 col-md-6 kiji-waku">
       <% if @user.img.present? %>
-        <h3 class="mb-5 mt-3 ml-5"><%= image_tag @user.img.url, class: "picture", alt: "" %>:<%= link_to @user.name, user_path(@user), class: "link" %>さんの記事</h3>
+        <h3 class="mb-5 mt-3 ml-5"><%= image_tag @user.img.url, class: "picture futi", alt: "" %>:<%= link_to @user.name, user_path(@user), class: "link" %>さんの記事</h3>
       <% else %>   
         <h3 class="mb-5 mt-3 ml-5"><img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 30 }) %>" alt="">:<%= link_to @user.name, user_path(@user), class: "link" %>さんの記事</h3>
       <% end %>
-      <p>タイトル:</p>
-      <%= @post.title %>
-      <p class="mt-5">内容:</p>
-      <p><%= simple_format(@post.content) %></p>
-        <div class="thumbnail">
-          <% if @post.image.present? %>
-            <p class="text-center"><%= image_tag @post.image.url, class: "pict", alt: "" %></p>
-          <% end %>
-        </div>
+      <p class="titleee">タイトル:</p>
+      <div class="title-layout">
+        <p><%= @post.title %></p>
+      </div>
+      <p class="mt-5 contenttt">内容:</p>
+      <div class="content-layout">
+        <p><%= simple_format(@post.content) %></p>
+      </div>
+      <div class="thumbnail">
+        <% if @post.image.present? %>
+          <p class="text-center"><%= image_tag @post.image.url, class: "pict", alt: "" %></p>
+        <% end %>
+      </div>
     </div> 
   </div>
 
   <div class="row">
-    <div class="col-md-2">
-      <p class="mb-0">コメントする</p>
-        <%= form_with(model: [@post, @comment], local: true) do |form| %>
-          <%= form.text_area :text, placeholder: "コメント", rows: "2" %>
-          <%= form.submit "送信" %>
-        <% end %>
-    </div>
-    <div class="offset-md-2 col-md-4">
-        <div class="text-center mt-5">
-          <% if current_user && @posts %>
-            <div class="mb-1">
-            <%= render 'favorites/favorite_button', post: @post %>
-            </div>
-            <%= link_to '編集する', edit_post_path(@post), class: "btn btn-outline-success"%>
-            <%= link_to '削除する', @post, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: "btn btn-outline-danger"%>
-          <% else %>
-            <%= render 'favorites/favorite_button', post: @post %>
-          <% end %>
-          <div class="mt-3">
-              <%= link_to '戻る', root_url %>
-          </div>
-        </div>
-    </div>
     <div class="offset-md-1 col-md-2 mt-5">
-      <%= link_to '👍:この記事のいいね', likers_post_path(@post), class: "link"%>
+      <p class="like-sotowaku mt-5"><%= link_to '👍:この記事のいいね', likers_post_path(@post), class: "link"%></p>
     </div>
+    <div class="offset-md-1 col-md-4">
+      <div class="text-center mt-5">
+        <% if current_user && @posts %>
+          <div class="mb-1">
+          <%= render 'favorites/favorite_button', post: @post %>
+          </div>
+          <%= link_to '編集する', edit_post_path(@post), class: "btn btn-outline-success"%>
+          <%= link_to '削除する', @post, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: "btn btn-outline-danger"%>
+        <% else %>
+          <%= render 'favorites/favorite_button', post: @post %>
+        <% end %>
+        <div class="mt-3">
+            <%= link_to '戻る', root_url %>
+        </div>
+      </div>
+    </div>
+    
   </div>   
         
   <div class="row">  
-    <div class="offset-md-5 col-md-4 mt-5">
-      <h5 class="ml-4">コメント一覧</h5>
+  <div class="offset-md-1 col-md-2 mt-5">
+      <p class="mb-0 ml-1 mt-3">コメントする</p>
+        <%= form_with(model: [@post, @comment], local: true) do |form| %>
+          <%= form.text_area :text, rows: "2" %>
+          <%= form.submit "送信" %>
+        <% end %>
+        
+    </div>
+    <div class="offset-md-1 col-md-4 mt-5">
+      <h5 class="text-center">コメント一覧</h5>
         <% if @comments %>
           <% @comments.each do |comment| %>
           <p>
