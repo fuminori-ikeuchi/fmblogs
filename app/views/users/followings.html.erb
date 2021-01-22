@@ -8,7 +8,7 @@
         <% if @user.img.present? %>
           <%= image_tag @user.img.url, class: "pic", alt: "" %>
         <% else %>   
-          <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 250 }) %>" alt="">
+          <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 200 }) %>" alt="">
         <% end %>
       </div>
     </div>
