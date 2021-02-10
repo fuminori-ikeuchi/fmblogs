@@ -8,11 +8,8 @@
     <%= csp_meta_tag %>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../../assets/stylesheets/posts.scss">
-    <link rel="stylesheet" href="../../../assets/stylesheets/users.scss">
-    <link rel="stylesheet" href="../../../assets/stylesheets/toppages.scss">
     <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application.js', 'data-turbolinks-track': 'reload' %>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
@@ -27,6 +24,7 @@
 
       <%= yield %>
     </div>
+    
     
     <footer>
       <p class="copy-right">&copy; 2021. Fmblogs.</p>

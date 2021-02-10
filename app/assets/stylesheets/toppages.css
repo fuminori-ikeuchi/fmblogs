@@ -1,16 +1,10 @@
 .picc {
-  width: 130px;
-  hight: 130px; }
+  width: 50px;
+  height: 50px; 
+  border: 1px solid black;
+  border-radius: 30px ; }
 
-.botan {
-  padding: 5px;
-  margin-top: 50px;
-  text-align: center;
-  border: 2px solid black;
-  border-radius: 50px; }
 
-.card-body {
-  padding-left: 0; }
 
 .card-header .daimei {
   padding: 0; }
@@ -25,10 +19,51 @@
 .card-body ul li p a:hover {
   color: blue; }
 
-.search {
-  margin-top: 100px; }
 
-.kijiitiran {
-  border-left: 1px solid black; }
+.top-photo {
+   display: inline-block;
+   margin: 0;
+}
+
+.user-name {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0 0 10px;
+}
+
+.pro-tag {
+  padding: 15px 0;
+  border: 2px solid green;
+  border-radius: 20px;
+  background-color: snow;
+}
+
+.mypage, .usearch, .kijisakusei {
+  color: #333333;
+  font-size: 25px;
+  font-weight: 600;
+  
+}
+
+.ibig {
+  color: #333333;
+  font-size: 30px;
+  margin-right: 10px;
+}
+
+.time-line {
+  border-right: 2px solid #dcdcdc;
+  border-left: 2px solid #dcdcdc;
+  margin-top: 0;
+
+}
+
+
+.news-contents ul {
+  margin: 0 0 0 10px;
+  padding: 0;
+}
+
+
 
 /*# sourceMappingURL=toppages.css.map */

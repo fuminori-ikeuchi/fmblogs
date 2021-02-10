@@ -16,7 +16,7 @@
 }
 
 .futi {
-    padding: 1px;
+    border-radius: 30px;
     border: 1px solid black;
 }
 
@@ -25,40 +25,65 @@
     
 }
 
-.like-sotowaku {
-    padding: 3px;
-    border: 2px solid green;
-    text-align: center;
-    border-radius: 10px;
+
+.kiji-waku {
+    padding: 20px 40px 30px 30px;
+    border: 2px solid black;
+    border-radius: 7px;
+    background-color: white;
     
 }
 
-.kiji-waku {
-    padding: 20px 40px 40px 30px;
-    border: 2px solid black;
+.dropdown-edit, .dropdown-delete {
+    margin: 0;
+    padding: 3px;
 }
 
+
+
 .title-layout {
-    padding: 10px;
+    padding: 20px 30px 40px 30px;
+    margin-left: 20px;
 }
 
 .content-layout {
-    padding: 10px;
+    padding: 10px 30px 30px 30px;
+    margin-left: 20px;
 }
 
 .titleee {
     margin: 0;
+    padding-left: 20px;
 }
 
 
 .contenttt {
     margin-bottom: 0;
+    padding-left: 20px;
 }
 
 .kiji-sotowaku {
     padding-bottom: 50px;
+    padding-top: 20px;
 }
 
 .kiji-henshuu-sotowaku {
     padding-bottom: 50px;
+    padding-top: 20px;
+}
+
+
+
+.pagi {
+    margin-left: 70px;
+}
+
+.comments-waku {
+    border: 1px solid black;
+    padding: 20px 20px;
+    border-radius: 7px;
+}
+
+.nyuuryokuran {
+    text-align: center;
 }

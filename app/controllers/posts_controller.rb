@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
-    @comments = @post.comments.includes(:user)
+    @comments = @post.comments.includes(:user).order(id: :desc).page(params[:page]).per(6)
     @posts = current_user.posts.find_by(id: params[:id])
     @user = @post.user
   

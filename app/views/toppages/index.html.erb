@@ -1,26 +1,44 @@
 
 <div class="row">
-　<div class="col-lg-3"> 
-　  <div class="card">
-      <div class="card-header">
-　      <h2 class="card-title"><%= @user.name %></h2>
-          <%= link_to 'マイページ', @user %>
-      </div>
-      <div class="card-body text-center">
+　<div class="col-lg-3 mt-5 mr-3">
+　  <div class="pro-tag">
+  　   <div class="top-photo">
         <% if @user.img.present? %>
           <%= image_tag @user.img.url, class: "picc", alt: "" %>
         <% else %> 
-          <img class="rounded img-fluid text-center" src="<%= gravatar_url(@user, { size: 150 }) %>" alt="">
+          <img class="rounded img-fluid picc" src="<%= gravatar_url(@user) %>" alt="">
         <% end %>
       </div>
+      <h4 class="user-name"><%= @user.name %></h4>
+　  </div>
+　  <div class="select-tag mt-4">
+　    <div class="ml-1">
+        <p><i class="far fa-grin ibig"></i><%= link_to 'マイページ', @user, class: "mypage" %></p>
+        <p><i class="fas fa-search ibig"></i><%= link_to 'ユーザーを探す', users_path ,class: "usearch" %></p>
+        <p><i class="fas fa-feather-alt ibig"></i><%= link_to "記事を書く",new_post_path(@post), class: "kijisakusei" %></p>
+      </div>
+      <div class="kensaku">
+        <p class="mb-1 mt-5">記事を検索する</p>
+          <%= form_with(url: posts_searches_path, local: true, method: :get, class: "search-form") do |form| %>
+            <%= form.text_field :keyword, placeholder: "タイトル", class: "search-input" %>
+            <%= form.submit "検索", class: "search-btn" %>
+          <% end %>
+      </div>
+                    
     </div>
+　</div>  
+  <div class="col-lg-5 time-line ml-2 mr-2 mt-3">
+    <h2 class="text-center mb-5">投稿一覧</h2>
+    <%= render 'posts/posts', posts: @posts, class: "time-line-content" %>
+  </div>
+  <div class="col-lg-3 ml-3 mt-4">
     <div class="card mt-5 waku">
       <div class="card-header daimei">
         <div class="card-title dai">
-          <p>☆ 最新のトピックス ☆</p>
+          <p>☆ 最新のニュース ☆</p>
         </div>
       </div>
-     <div class="card-body">
+     <div class="card-body news-contents">
       <ul>
         <li>
           <p><a href="https://techacademy.jp/?gclid=CjwKCAiA6aSABhApEiwA6Cbm_yTG5Qy7W5NBvXeduDXxFPbVhI6c3M3PrpEg4rkkWc3mnHxwoyUQJRoCE6QQAvD_BwE">私はここでプログラミングを学んだ</a></p>
@@ -40,22 +58,8 @@
       </ul>
     </div>
     </div>
-　</div>  
-  <div class="offset-lg-1 col-lg-5">
-    <h3 class="ml-5">投稿一覧</h3>
-    <P><%= render 'posts/posts', posts: @posts %></P>
-  </div>
-  <div class="col-lg-2 ml-5 search">
-    <p class="botan"><%= link_to '👥:ユーザーを探す', users_path ,class: "link"%></p>
-    <div class="kensaku">
-    <p class="mt-4 mb-1 mt-5">記事検索</p>
-      <%= form_with(url: posts_searches_path, local: true, method: :get, class: "search-form") do |form| %>
-        <%= form.text_field :keyword, placeholder: "タイトル", class: "search-input" %>
-        <%= form.submit "検索", class: "search-btn" %>
-      <% end %>
-    </div>
   </div>
 </div>
-  
-  
 
+<%= javascript_pack_tag 'hello_vue' %>
+    <%= stylesheet_pack_tag 'hello_vue'  %> 

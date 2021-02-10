@@ -51,4 +51,7 @@ class User < ApplicationRecord
   def favorite?(other_user)
     self.likes.include?(other_user)
   end
+
+
+  
 end
