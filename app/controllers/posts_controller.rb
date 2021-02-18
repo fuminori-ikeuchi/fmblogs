@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :require_user_logged_in 
-  # before_action :correct_user, only: [:destroy, :edit, :update]
+  before_action :correct_user, only: [:destroy, :edit, :update]
   
   def show
     @post = Post.find(params[:id])
@@ -62,12 +62,12 @@ class PostsController < ApplicationController
     params.require(:post).permit(:content, :image, :title)
   end
   
-  # def correct_user
-  #   @post = current_user.posts.find_by(id: params[:id])
-  #   unless @post
-  #     redirect_to root_url
-  #   end
-  # end
+  def correct_user
+    @post = current_user.posts.find_by(id: params[:id])
+    unless @post
+      redirect_to root_url
+    end
+  end
 
 end
 
