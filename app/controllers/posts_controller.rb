@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :require_user_logged_in 
-  before_action :correct_user, only: [:destroy, :edit, :update]
+  # before_action :correct_user, only: [:destroy, :edit, :update]
   
   def show
     @post = Post.find(params[:id])
@@ -8,7 +8,6 @@ class PostsController < ApplicationController
     @comments = @post.comments.includes(:user).order(id: :desc).page(params[:page]).per(6)
     @posts = current_user.posts.find_by(id: params[:id])
     @user = @post.user
-  
   end
 
   def new
@@ -44,9 +43,8 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    flash[:success] = 'メッセージを削除しました。'
+    flash[:success] = '記事を削除しました。'
     redirect_to root_url
-    
   end
   
   def likers
@@ -64,12 +62,12 @@ class PostsController < ApplicationController
     params.require(:post).permit(:content, :image, :title)
   end
   
-  def correct_user
-    @post = current_user.posts.find_by(id: params[:id])
-    unless @post
-      redirect_to root_url
-    end
-  end
+  # def correct_user
+  #   @post = current_user.posts.find_by(id: params[:id])
+  #   unless @post
+  #     redirect_to root_url
+  #   end
+  # end
 
 end
 

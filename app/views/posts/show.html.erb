@@ -64,6 +64,9 @@
             <p class="mt-0 ml-2">
             <%= comment.text %>
             </p>
+            <p class="text-center">
+              <%=link_to "削除", post_comment_path(comment.post.id, comment.id), method: :delete %>
+            </p>
             <% end %>
           <% end %>
         </div>
