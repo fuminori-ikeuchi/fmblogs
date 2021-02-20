@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, only: [:index, :show, :edit, :update]
+  before_action :require_user_logged_in, only: [:index, :show, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
   
   def index
@@ -45,6 +45,13 @@ class UsersController < ApplicationController
       flash.now[:danger] = 'プロフィールは更新されませんでした'
       render :edit
     end
+  end
+  
+  
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "ユーザーを削除しました"
+    redirect_to users_url
   end
   
   
