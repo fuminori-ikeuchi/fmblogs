@@ -11,8 +11,9 @@ class CommentsController < ApplicationController
   
   def destroy
     
-    Comment.find_by(id: params[:id],post_id: params[:post_id]).destroy
-    
+    @commentsss = Comment.find_by(id: params[:id], post_id: params[:post_id])
+    @commentsss.destroy
+    redirect_to root_url
     
   end
   
