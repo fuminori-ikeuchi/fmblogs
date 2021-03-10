@@ -10,3 +10,5 @@ User.create!(name:  "池内　文徳",
              password:  "fumi7127",
              password_confirmation: "fumi7127",
              admin: true)
+             
+             
