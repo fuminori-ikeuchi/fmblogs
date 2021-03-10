@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
   
-  resources :users, only: [:index, :show, :create, :edit, :update] do
+  resources :users, only: [:index, :show, :create, :edit, :update, :destroy] do
     member do
       get :followings
       get :followers
@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resources :searches, only: [:index]
   end
   resources :posts, only: [:show, :new, :create, :edit, :update, :destroy] do
-    resources :comments, only: [:create, :destroy]
+    resources :comments, only: [:create]
     member do
       get :likers
     end

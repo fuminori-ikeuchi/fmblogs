@@ -30,6 +30,9 @@
         <%= link_to "✍:記事の作成",new_post_path(@post), class: "btn btn-outline-success" %>
         <%= link_to '👤:ユーザー設定', edit_user_path(@user), class: "btn btn-outline-secondary" %>
       <% end %>
+      <% if current_user.admin? && !(current_user == @user) %>
+　　　　　<%= link_to "delete", @user, method: :delete, data: { confirm: "本当に削除しますか?" } %>
+　　　<% end %>
     </div>
   </div>
 </div>

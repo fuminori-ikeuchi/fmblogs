@@ -13,9 +13,14 @@
 　  </div>
 　  <div class="select-tag mt-4">
 　    <div class="ml-1">
-        <p><i class="far fa-grin ibig"></i><%= link_to 'マイページ', @user, class: "mypage" %></p>
+　      <% unless current_user.admin? %>
+          <p><i class="far fa-grin ibig"></i><%= link_to 'マイページ', @user, class: "mypage" %></p>
+        <% end %>
         <p><i class="fas fa-search ibig"></i><%= link_to 'ユーザーを探す', users_path ,class: "usearch" %></p>
-        <p><i class="fas fa-feather-alt ibig"></i><%= link_to "記事を書く",new_post_path(@post), class: "kijisakusei" %></p>
+        <% unless current_user.admin? %>
+          <p><i class="fas fa-feather-alt ibig"></i><%= link_to "記事を書く",new_post_path(@post), class: "kijisakusei" %></p>
+        <% end %>
+        
       </div>
       <div class="kensaku">
         <p class="mb-1 mt-5">記事を検索する</p>
@@ -30,6 +35,7 @@
     <h2 class="text-center mb-5">投稿一覧</h2>
     <%= render 'posts/posts', posts: @posts, class: "time-line-content" %>
   </div>
+  <% unless current_user.admin? %>
   <div class="col-lg-3 ml-3 mt-4">
     <div class="card mt-5 waku">
       <div class="card-header daimei">
@@ -58,4 +64,5 @@
     </div>
     </div>
   </div>
+  <% end %>
 </div>

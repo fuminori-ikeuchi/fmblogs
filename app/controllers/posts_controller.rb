@@ -1,11 +1,11 @@
 class PostsController < ApplicationController
   before_action :require_user_logged_in 
-  before_action :correct_user, only: [:destroy, :edit, :update]
+  before_action :correct_user, only: [:edit, :update]
   
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
-    @comments = @post.comments.includes(:user).order(id: :desc).page(params[:page]).per(6)
+    @comments = @post.comments.includes(:user).order(id: :desc).page(params[:page]).per(8)
     @posts = current_user.posts.find_by(id: params[:id])
     @user = @post.user
   end
@@ -27,7 +27,7 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
+    
     
   end
 
@@ -42,6 +42,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    @post = Post.find(params[:id])
     @post.destroy
     flash[:success] = '記事を削除しました。'
     redirect_to root_url

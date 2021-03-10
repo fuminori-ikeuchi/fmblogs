@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, only: [:index, :show, :edit, :update]
+  before_action :require_user_logged_in, only: [:index, :show, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
   
   def index
@@ -7,7 +7,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    
     @user = User.find(params[:id])
     @posts = @user.posts.order(id: :desc).page(params[:page]).per(5)
     counts(@user)
@@ -19,7 +18,6 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(user_params)
-
     if @user.save
       flash[:success] = 'ユーザを登録しました。'
       redirect_to login_path
@@ -47,6 +45,16 @@ class UsersController < ApplicationController
     end
   end
   
+  # def destroy
+  #   @user.destroy
+  #   flash[:success] = 'ユーザーを削除しました。'
+  #   redirect_to root_url
+  # end
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "ユーザー削除完了"
+    redirect_to users_path
+  end
   
   
   

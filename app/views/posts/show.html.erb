@@ -14,13 +14,29 @@
       </div>
     </div>
   <% end %>
+    <% if current_user.admin? && @post %>
+    <div class="row">  
+      <div class="dropdown offset-md-5 col-md-3 text-right">
+        <div class="btn-group">
+          <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-cog"></i>
+          </button>
+          <div class="dropdown-menu">
+            <p class="dropdown-edit text-center"><%= link_to '編集する', edit_post_path(@post) %></p>
+            <div class="dropdown-divider"></div>
+            <p class="dropdown-delete text-center"><%= link_to '削除する', @post, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
   <div class="row">
     <div class="offset-lg-2 col-lg-6 mt-3">
       <div class="kiji-waku">
         <% if @user.img.present? %>
           <h3 class="mb-5 mt-3 text-center"><%= image_tag @user.img.url, class: "picture futi", alt: "" %> : <%= link_to @user.name, user_path(@user), class: "link" %>さんの記事</h3>
         <% else %>   
-          <h3 class="mb-5 mt-3 text-center"><img class="rounded img-fluid futi" src="<%= gravatar_url(@user, { size: 30 }) %>" alt=""> : <%= link_to @user.name, user_path(@user), class: "link" %>さんの記事</h3>
+          <h3 class="mb-5 mt-3 text-center"><img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 30 }) %>" alt=""> : <%= link_to @user.name, user_path(@user), class: "link" %>さんの記事</h3>
         <% end %>
         <p class="titleee">タイトル:</p>
         <div class="title-layout">
@@ -63,9 +79,6 @@
             </p>
             <p class="mt-0 ml-2">
             <%= comment.text %>
-            </p>
-            <p class="text-center">
-              <%=link_to "削除", post_comment_path(comment.post.id, comment.id), method: :delete %>
             </p>
             <% end %>
           <% end %>
